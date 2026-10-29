@@ -1,0 +1,5 @@
+# No runtime dependencies: the corrected script, reproduction harness and
+# tests use only the Python 3.9+ standard library.
+#
+# Optional (development only): pytest as an alternative test runner.
+# pytest>=7.0

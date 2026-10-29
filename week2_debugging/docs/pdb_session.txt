@@ -1,0 +1,58 @@
+$ printf "break calculate_total_value\\ncontinue\\nstep\\nstep\\np i\\np list(range(1, len(inventory)))\\np inventory[0]\\ncontinue\\np product\\np list(product.keys())\\nwhere\\nq\\n" | python -m pdb buggy_original.py
+
+> /home/user/week2_debugging/buggy_original.py(1)<module>()
+-> """inventory_manager.py - small shop inventory manager (ORIGINAL, AS RECEIVED).
+(Pdb) Breakpoint 1 at /home/user/week2_debugging/buggy_original.py:40
+(Pdb) > /home/user/week2_debugging/buggy_original.py(40)calculate_total_value()
+-> total = 0
+(Pdb) > /home/user/week2_debugging/buggy_original.py(41)calculate_total_value()
+-> for i in range(1, len(inventory)):
+(Pdb) > /home/user/week2_debugging/buggy_original.py(42)calculate_total_value()
+-> total = total + inventory[i]["price"] * inventory[i]["quantity"]
+(Pdb) 1
+(Pdb) [1, 2]
+(Pdb) {'name': 'Notebook', 'price': 120.0, 'quantity': 10, 'tags': []}
+(Pdb) Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/pdb.py", line 2524, in main
+    pdb._run(target)
+    ~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/pdb.py", line 2264, in _run
+    self.run(target.code)
+    ~~~~~~~~^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/bdb.py", line 680, in run
+    exec(cmd, globals, locals)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+  File "/home/user/week2_debugging/buggy_original.py", line 163, in <module>
+    main()
+    ~~~~^^
+  File "/home/user/week2_debugging/buggy_original.py", line 158, in main
+    print("Summary:", inventory_summary(inventory))
+                      ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/user/week2_debugging/buggy_original.py", line 127, in inventory_summary
+    total_items = total_items + product["qty"]
+                                ~~~~~~~^^^^^^^
+KeyError: 'qty'
+Total inventory value: 4555.0
+Average price: 346.3333333333333
+Backpack after 10% discount: 89.9
+Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
+> /home/user/week2_debugging/buggy_original.py(127)inventory_summary()
+-> total_items = total_items + product["qty"]
+(Pdb) {'name': 'Notebook', 'price': 120.0, 'quantity': 10, 'tags': []}
+(Pdb) ['name', 'price', 'quantity', 'tags']
+(Pdb)   /usr/local/lib/python3.13/pdb.py(2524)main()
+-> pdb._run(target)
+  /usr/local/lib/python3.13/pdb.py(2264)_run()
+-> self.run(target.code)
+  /usr/local/lib/python3.13/bdb.py(680)run()
+-> exec(cmd, globals, locals)
+  <string>(1)<module>()
+  /home/user/week2_debugging/buggy_original.py(163)<module>()
+-> main()
+  /home/user/week2_debugging/buggy_original.py(158)main()
+-> print("Summary:", inventory_summary(inventory))
+> /home/user/week2_debugging/buggy_original.py(127)inventory_summary()
+-> total_items = total_items + product["qty"]
+(Pdb) 

@@ -1,0 +1,17 @@
+PASTE THE TEXT BELOW INTO THE "Write description for the report" BOX (340+ words)
+================================================================================
+
+This report presents my Week 2 deliverable for the Junior Python Developer internship, which focuses on debugging and troubleshooting Python applications. The task provided a defective 163-line shop inventory script, and my objective was to review it systematically, reproduce and diagnose every defect, deliver a corrected script, and document the complete troubleshooting process so that an evaluator can follow exactly how each problem was found and resolved.
+
+I began with a static code review, flagging high-risk areas such as manual file handling, index-based loops, conditionals, mutable default arguments and global state. Every suspicion was then converted into a runnable reproduction before any code was changed. In total I identified, reproduced and fixed twelve distinct bugs: a shared mutable tag list, an off-by-one loop that understated the inventory value, a ZeroDivisionError on empty data, discount arithmetic that returned the saving instead of the final price, CSV loading that crashed on the header row and left quantities as strings, overselling that drove stock to minus forty-seven, a string-based sort that returned the cheapest products as the most expensive, a shallow-copy backup that aliased the live data, an infinite loop caused by a misplaced continue statement, a KeyError from an inconsistent dictionary key, an UnboundLocalError from a missing global declaration, and a save routine whose append mode duplicated the file on every write.
+
+Diagnosis combined bottom-up traceback analysis, REPL experiments and genuine Python Debugger sessions, including breakpoint and post-mortem inspection, whose transcripts are preserved as evidence. Each fix was kept minimal and functionality-preserving, and each is locked in by a regression test named after its bug identifier. Only after all fixes passed did I refactor: extracting a single product-lookup helper, replacing index loops with generators, adopting the csv module with context managers, adding type hints and validation, and rounding monetary values.
+
+The submission contains the preserved buggy original, a reproduction harness demonstrating twelve out of twelve bugs, the corrected inventory_manager.py, a formal bug report, a detailed debugging log with before-and-after code for every defect, and twenty-two automated tests that all pass under both unittest and pytest. The project uses only the Python standard library and runs on any standard Python 3.9 or newer environment.
+
+================================================================================
+Also fill these fields on the form:
+  * Upload your report file  ->  Week2_Debugging_Report.docx
+  * GitHub project URL       ->  push the week2_debugging folder to GitHub
+                                 (compulsory for technical internships -
+                                 without it your certificate will not be issued)
